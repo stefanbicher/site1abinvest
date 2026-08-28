@@ -1,1 +1,406 @@
-# site1abinvest
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&B Invest Service | Capital de Elită</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-red: #D31313;
+            --dark-red: #8B0000;
+            --deep-black: #0a0a0a;
+            --pure-white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.03);
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--pure-white);
+            color: var(--deep-black);
+            overflow-x: hidden;
+        }
+
+        /* --- NAVIGAȚIE --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .logo img {
+            height: 55px;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--deep-black);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary-red);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* --- BUTON CUMPĂRARE PREMIUM --- */
+        .btn-premium {
+            padding: 14px 35px;
+            background: linear-gradient(45deg, var(--primary-red), var(--dark-red));
+            color: white;
+            text-decoration: none;
+            border-radius: 2px; /* Margini drepte pentru un look mai office/lux */
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            box-shadow: 0 15px 30px rgba(211, 19, 19, 0.2);
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(211, 19, 19, 0.4);
+            letter-spacing: 3px;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 8%;
+            background: linear-gradient(135deg, #fff 50%, #f9f9f9 100%);
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 5.5rem;
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 25px;
+            color: var(--deep-black);
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-red);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #444;
+            border-left: 4px solid var(--primary-red);
+            padding-left: 20px;
+            max-width: 500px;
+        }
+
+        /* --- SERVICII --- */
+        .services {
+            padding: 120px 8%;
+            background: var(--pure-white);
+        }
+
+        .grid-services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .card {
+            padding: 50px;
+            background: #fff;
+            border: 1px solid #eee;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .card:hover {
+            background: var(--deep-black);
+            color: white;
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .card:hover h3 { color: var(--primary-red); }
+
+        /* --- PORTOFOLIU (MOD NEGRU) --- */
+        #pe {
+            background: var(--deep-black);
+            padding: 120px 8%;
+            color: white;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 50px;
+        }
+
+        .portfolio-item {
+            height: 450px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover {
+            filter: grayscale(0%);
+            border-color: var(--primary-red);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            padding: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            bottom: 0;
+        }
+
+        /* --- CONTACT --- */
+        #contact {
+            padding: 120px 8%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 100px;
+            background: #fdfdfd;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            background: transparent;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus {
+            border-color: var(--primary-red);
+        }
+
+        /* --- DECORAȚII LUMINI --- */
+        .ambient-light {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(211, 19, 19, 0.05) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+            z-index: 1;
+        }
+
+        footer {
+            padding: 50px 8%;
+            background: #000;
+            color: #555;
+            text-align: center;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 968px) {
+            .hero-content h1 { font-size: 3.5rem; }
+            #contact, .portfolio-grid { grid-template-columns: 1fr; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="logo1.jpg-removebg-preview.png" alt="A&B Invest Logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#acasa">Acasă</a></li>
+            <li><a href="#servicii">Servicii</a></li>
+            <li><a href="#portofoliu">Portofoliu</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="btn-premium">Investește Acum</a>
+    </nav>
+
+    <section class="hero" id="acasa">
+        <div class="ambient-light"></div>
+        <div class="hero-content" data-aos="fade-right" data-aos-duration="1200">
+            <h1 data-aos="fade-up" data-aos-delay="200">A&B <br><span>INVEST</span></h1>
+            <p data-aos="fade-up" data-aos-delay="400">Excelență în managementul capitalului și investiții imobiliare de lux. Construim viitorul tău financiar cu precizie chirurgicală.</p>
+            <div data-aos="fade-up" data-aos-delay="600">
+                <a href="#portofoliu" class="btn-premium">Vezi Portofoliul</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="servicii">
+        <div style="text-align: center;" data-aos="fade-up">
+            <h2 style="font-size: 2.5rem; letter-spacing: 5px; text-transform: uppercase;">Divizii de Business</h2>
+            <div style="width: 80px; height: 4px; background: var(--primary-red); margin: 20px auto;"></div>
+        </div>
+        
+        <div class="grid-services">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <h3>Real Estate</h3>
+                <p>Identificăm proprietăți cu potențial uriaș de apreciere înainte ca acestea să ajungă pe piața publică.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <h3>Asset Management</h3>
+                <p>Protejăm și creștem averea clienților noștri prin strategii diversificate și risc calculat.</p>
+            </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="300">
+                <h3>Business Consulting</h3>
+                <p>Suntem partenerul tău în scalarea afacerilor, oferind suport logistic și financiar de top.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portofoliu">
+        <div data-aos="fade-right">
+            <h2 style="font-size: 2.5rem; text-transform: uppercase;">Proiecte de Referință</h2>
+            <p style="color: var(--primary-red); font-weight: 600; margin-top: 10px;">DOAR EXCLUSIVITATE.</p>
+        </div>
+
+        <div class="portfolio-grid">
+            <div class="portfolio-item" style="background-color: #111;" data-aos="zoom-in">
+                <div class="portfolio-overlay">
+                    <h4>Rezidențial Premium</h4>
+                    <p>București, Sector 1</p>
+                </div>
+            </div>
+            <div class="portfolio-item" style="background-color: #1a1a1a;" data-aos="zoom-in" data-aos-delay="200">
+                <div class="portfolio-overlay">
+                    <h4>Complex Logistic</h4>
+                    <p>Zona Industrială Nord</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div data-aos="fade-right">
+            <h2 style="font-size: 3rem; text-transform: uppercase; line-height: 1;">Ești gata pentru <br><span style="color: var(--primary-red);">nivelul următor?</span></h2>
+            <p style="margin-top: 30px; font-size: 1.1rem; color: #666;">Clienții noștri nu cumpără servicii, ei investesc în rezultate garantate de experiența A&B.</p>
+            <div style="margin-top: 50px;">
+                <p><strong>Telefon:</strong> 07xx xxx xxx</p>
+                <p><strong>Email:</strong> office@abinvest.ro</p>
+                <p><strong>Locație:</strong> București, România</p>
+            </div>
+        </div>
+
+        <div class="contact-form" data-aos="fade-left">
+            <form id="investForm">
+                <input type="text" placeholder="Numele tău complet" required>
+                <input type="email" placeholder="Adresa de email" required>
+                <input type="text" placeholder="Bugetul de investiție estimat" required>
+                <textarea placeholder="Cum te putem ajuta să crești?" rows="5" required></textarea>
+                <button type="submit" class="btn-premium" style="width: 100%;">Trimite Solicitarea de Parteneriat</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 A&B INVEST SERVICE. TOATE DREPTURILE REZERVATE. CONCEPT EXCLUSIV.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Pornim animațiile
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        // Logica de funcționare a butoanelor (Smooth Scroll)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 70, // Scădem înălțimea meniului pentru fixare perfectă
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Logica formularului
+        document.getElementById('investForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Solicitarea ta a fost trimisă cu succes către echipa A&B Invest. Vei fi contactat de un consultant în cel mai scurt timp.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
